@@ -7,7 +7,12 @@ app.get('/', (req, res) => {
     res.send('Hola, estamos en Node');
 });
 
-// Inicia el servidor
-app.listen(port, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
-});
+// Solo iniciamos el servidor si este archivo es el punto de entrada principal
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`Servidor corriendo en http://localhost:${port}`);
+    });
+}
+
+// Exportamos la app para testing
+module.exports = app;
